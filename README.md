@@ -1,2 +1,5 @@
 # SpaceByte
 Modelling of the solar system in python
+## Prerequisites
+* Python3
+* PySide2
