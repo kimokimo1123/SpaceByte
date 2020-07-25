@@ -2,7 +2,8 @@ import math
 
 class Planet:
 
-    def __init__(self, grosse_ha, kleine_ha, lineare_ex, numerische_ex, winkel_fi):
+    def __init__(self, name, grosse_ha, kleine_ha, lineare_ex, numerische_ex, winkel_fi):
+        self.name = name
         self.grosse_ha= grosse_ha
         self.kleine_ha= kleine_ha
         self.lineare_ex= lineare_ex
