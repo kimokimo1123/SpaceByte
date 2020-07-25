@@ -12,7 +12,8 @@ class Universe(QtWidgets.QWidget):
         self.setAutoFillBackground(True)
         self.planets =[]
         self.planets.append(Planet('Earth', 149597890, 149577002.3, 2499813.6534358, 0.01671022, 0))
-    
+        self.planets.append(Planet('Jupiter', 778412020, 777500023.9, 37669428.22, 0.04839266, 0))
+
     def paintEvent(self, event):
         painter = QtGui.QPainter(self)
         pen = QtGui.QPen()
@@ -20,10 +21,9 @@ class Universe(QtWidgets.QWidget):
         pen.setWidth(3)
         pen.setBrush(QtCore.Qt.black)
         painter.setPen(pen)
-        my_earth = Planet('Earth', 149597890, 149577002.3, 2499813.6534358, 0.01671022, 0)
-        my_jupiter = Planet('Jupiter', 778412020, 777500023.9, 37669428.22, 0.04839266, 0)
-        painter.drawEllipse(QtCore.QPoint(200,200),my_earth.grosse_ha/self.scale,my_earth.kleine_ha/self.scale)
-        painter.drawEllipse(QtCore.QPoint(200,200),my_jupiter.grosse_ha/self.scale,my_jupiter.kleine_ha/self.scale)
+        for planet in self.planets:
+            painter.drawEllipse(QtCore.QPoint(200,200),planet.grosse_ha/self.scale,planet.kleine_ha/self.scale)
+
 class SpaceByte(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
