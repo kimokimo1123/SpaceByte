@@ -24,7 +24,7 @@ class Universe(QtWidgets.QWidget):
         painter = QtGui.QPainter(self)
         pen = QtGui.QPen()
         pen.setStyle(QtCore.Qt.SolidLine)
-        pen.setWidth(3)
+        pen.setWidth(1)
         pen.setBrush(QtCore.Qt.black)
         painter.setPen(pen)
         painter.drawPoint(self.width()/2,self.height()/2)
