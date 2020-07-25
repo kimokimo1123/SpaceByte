@@ -1,26 +1,27 @@
 import sys
 import math
+from Planet import Planet
 from PySide2 import QtCore, QtGui, QtWidgets
 
 class Universe(QtWidgets.QWidget):
+    scale = 7479894.5
+
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-        self.setPalette(QtGui.QPalette(QtGui.QColor(250, 250, 250)))
+        self.setPalette(QtGui.QPalette(QtGui.QColor(500, 500, 500)))
         self.setAutoFillBackground(True)
     
     def paintEvent(self, event):
         painter = QtGui.QPainter(self)
-        painter.setPen(QtCore.Qt.NoPen)
-        painter.setBrush(QtCore.Qt.white)
-        painter.save()
-        painter.translate(0, self.height())
-        painter.drawPie(QtCore.QRect(-35, -35, 70, 70), 0, 90 * 16)
-        painter.restore()
-        painter.setPen(QtCore.Qt.white)
-        painter.drawLine(10,10,200,300)
-        painter.setBrush(QtCore.Qt.CrossPattern)
-        painter.drawEllipse(10,10,110,90)
-
+        pen = QtGui.QPen()
+        pen.setStyle(QtCore.Qt.SolidLine)
+        pen.setWidth(3)
+        pen.setBrush(QtCore.Qt.black)
+        painter.setPen(pen)
+        my_earth = Planet(149597890, 149577002.3, 2499813.6534358, 0.01671022, 0)
+        my_jupiter = Planet(778412020, 777500023.9, 37669428.22, 0.04839266, 0)
+        painter.drawEllipse(QtCore.QPoint(200,200),my_earth.grosse_ha/self.scale,my_earth.kleine_ha/self.scale)
+        painter.drawEllipse(QtCore.QPoint(200,200),my_jupiter.grosse_ha/self.scale,my_jupiter.kleine_ha/self.scale)
 class SpaceByte(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
