@@ -1,7 +1,11 @@
 import sys
 import math
+import PySide2
 from Planet import Planet
 from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2.QtWidgets import QApplication, QWidget, QLabel
+from PySide2.QtGui import QPainter, QPixmap, QPainterPath
+from PySide2.QtCore import QObject, QPointF, QPropertyAnimation, Property
 
 class Universe(QtWidgets.QWidget):
     scale = 7479894.5*1.5
@@ -31,14 +35,13 @@ class Universe(QtWidgets.QWidget):
         for planet in self.planets:
             painter.drawEllipse(QtCore.QPoint(self.width()/2,self.height()/2),planet.grosse_ha/self.scale,planet.kleine_ha/self.scale)
 
-
 class SpaceByte(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         hello = QtWidgets.QPushButton('Start')
         hello.resize(100, 30)
         biee = QtWidgets.QPushButton('Stop')
-        biee.resize(50, 60)
+        biee.resize(100, 60)
         universe = Universe()
         universe.resize(1000, 1000)
         vLayout = QtWidgets.QVBoxLayout()
@@ -46,10 +49,6 @@ class SpaceByte(QtWidgets.QWidget):
         vLayout.addWidget(biee)
         vLayout.addWidget(universe)
         self.setLayout(vLayout)
-
-
-        
-        
 
 
 app = QtWidgets.QApplication(sys.argv)
