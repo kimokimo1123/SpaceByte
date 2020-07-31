@@ -21,3 +21,4 @@ class Planet:
     def y_coordin(self):
         y_coord = self.kleine_ha*(math.sin(self.winkel_fi))
         return y_coord
+

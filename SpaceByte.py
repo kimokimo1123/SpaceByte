@@ -1,14 +1,10 @@
 import sys
 import math
-import PySide2
 from Planet import Planet
 from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtWidgets import QApplication, QWidget, QLabel
-from PySide2.QtGui import QPainter, QPixmap, QPainterPath
-from PySide2.QtCore import QObject, QPointF, QPropertyAnimation, Property
 
 class Universe(QtWidgets.QWidget):
-    scale = 7479894.5*1.5
+    scale = 7479894.5
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
@@ -28,31 +24,58 @@ class Universe(QtWidgets.QWidget):
         painter = QtGui.QPainter(self)
         pen = QtGui.QPen()
         pen.setStyle(QtCore.Qt.SolidLine)
-        pen.setWidth(1)
+        pen.setWidth(3)
         pen.setBrush(QtCore.Qt.black)
         painter.setPen(pen)
-        painter.drawPoint(self.width()/2,self.height()/2)
         for planet in self.planets:
-            painter.drawEllipse(QtCore.QPoint(self.width()/2,self.height()/2),planet.grosse_ha/self.scale,planet.kleine_ha/self.scale)
+            painter.drawPoint(
+                ((planet.grosse_ha/self.scale*math.cos(math.radians(planet.winkel_fi)))+self.height()/2), 
+                ((planet.kleine_ha/self.scale*math.sin(math.radians(planet.winkel_fi)))+self.width()/2))
+        
 
 class SpaceByte(QtWidgets.QWidget):
+    def Drawplanet(self):
+        self.universe.planets[0].winkel_fi += 4.090909090909091
+        self.universe.planets[1].winkel_fi += 1.6
+        self.universe.planets[2].winkel_fi += 0.9863013698630137
+        self.universe.planets[3].winkel_fi += 0.5240174672489083
+        self.universe.planets[4].winkel_fi += 0.0831600831600832
+        self.universe.planets[5].winkel_fi += 0.0334852571853781
+        self.universe.planets[6].winkel_fi += 0.0117401513175059
+        self.universe.planets[7].winkel_fi += 0.0059852364168385
+        self.universe.update()
+
+    def startButtonEvent(self):
+        print ("Start Button clicked")
+        self.timer.start(2)
+
+    def stopButtonEvent(self):
+        print ("Stop Button clicked")
+        self.timer.stop()
+        self.close()
+
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-        hello = QtWidgets.QPushButton('Start')
-        hello.resize(100, 30)
-        biee = QtWidgets.QPushButton('Stop')
-        biee.resize(100, 60)
-        universe = Universe()
-        universe.resize(1000, 1000)
+        startButton = QtWidgets.QPushButton('Start')
+        startButton.resize(100, 30)
+        startButton.clicked.connect(self.startButtonEvent)
+        stopButton = QtWidgets.QPushButton('Stop')
+        stopButton.resize(50, 60)
+        stopButton.clicked.connect(self.stopButtonEvent)
+        self.universe = Universe()
+        self.universe.resize(1000, 1000)
         vLayout = QtWidgets.QVBoxLayout()
-        vLayout.addWidget(hello)
-        vLayout.addWidget(biee)
-        vLayout.addWidget(universe)
+        vLayout.addWidget(startButton)
+        vLayout.addWidget(stopButton)
+        vLayout.addWidget(self.universe)
+        self.angle = 0
         self.setLayout(vLayout)
-
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.Drawplanet)
+ 
 
 app = QtWidgets.QApplication(sys.argv)
 spaceByte = SpaceByte()
-spaceByte.setGeometry(0, 0, 1000, 1000)
+spaceByte.setGeometry(1500, 500, 1000, 1000)
 spaceByte.show()
 sys.exit(app.exec_())
