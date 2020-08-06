@@ -7,6 +7,3 @@ Modelling of the solar system in python
 ```cmd
 python main.py
 ```
-## Licenses
-background taken from https://www.pixel4k.com/starry-sky-stars-universe-violet-4k-24823.html
-no license information found
