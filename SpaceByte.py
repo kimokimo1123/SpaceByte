@@ -23,7 +23,6 @@ class SpaceByte(QtWidgets.QWidget):
         stopButton.resize(50, 60)
         stopButton.clicked.connect(self.stopButtonEvent)
         self.solar_system = SolarSystem()
-        self.solar_system.resize(1000, 1000)
         h_layout = QtWidgets.QHBoxLayout()
         h_layout.addWidget(startButton)
         h_layout.addWidget(stopButton)
@@ -40,5 +39,6 @@ class SpaceByte(QtWidgets.QWidget):
         self.setLayout(vLayout)
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.increment_day)
- 
+
+
 

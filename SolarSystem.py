@@ -9,9 +9,14 @@ class SolarSystem(QtWidgets.QWidget):
         QtWidgets.QWidget.__init__(self, parent)
         self.setPalette(QtGui.QPalette(QtGui.QColor(100, 100, 100)))
         self.setAutoFillBackground(True)
+        self.oImage = QtGui.QImage("background.jpg")
+        sImage = self.oImage.scaled(QtCore.QSize(self.width(),self.height()))
+        palette = QtGui.QPalette()
+        palette.setBrush(QtGui.QPalette.Window, QtGui.QBrush(sImage))                        
+        self.setPalette(palette)
         self.planets =[]
-        self.planets.append(Planet('Mercury', 57909175, 56671636.48, 11907903.61, 0.20563069, 0, 4.090909090909091))
-        self.planets.append(Planet('Venus', 108208930, 108206447.8, 732923.9709, 0.00677323, 0, 1.6))
+        self.planets.append(Planet('Mercury', 57909175, 56671636.48, 11907903.61, 0.20563069, 0, 4.090909090909091,))
+        self.planets.append(Planet('Venus', 108208930, 108206447.8, 732923.9709, 0.00677323, 0, 1.6, ))
         self.planets.append(Planet('Earth', 149597890, 149577002.3, 2499813.6534358, 0.01671022, 0, 0.9863013698630137))
         self.planets.append(Planet('Mars', 227936640, 226939989.1, 21292092.63, 0.09341233, 0, 0.5240174672489083))
         self.planets.append(Planet('Jupiter', 778412020, 777500023.9, 37669428.22, 0.04839266, 0, 0.0831600831600832))
@@ -24,10 +29,16 @@ class SolarSystem(QtWidgets.QWidget):
         pen = QtGui.QPen()
         pen.setStyle(QtCore.Qt.SolidLine)
         pen.setWidth(3)
-        pen.setBrush(QtCore.Qt.black)
+        pen.setBrush(QtCore.Qt.white)
         painter.setPen(pen)
         for planet in self.planets:
             painter.drawPoint(
                 (planet.get_x()/self.scale+self.width()/2), 
                 (planet.get_y()/self.scale+self.height()/2))
         painter.end()
+    
+    def resizeEvent(self, newSize):
+        sImage = self.oImage.scaled(QtCore.QSize(self.width(),self.height()))
+        palette = QtGui.QPalette()
+        palette.setBrush(QtGui.QPalette.Window, QtGui.QBrush(sImage))                        
+        self.setPalette(palette)
