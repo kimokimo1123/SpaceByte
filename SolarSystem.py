@@ -28,6 +28,6 @@ class SolarSystem(QtWidgets.QWidget):
         painter.setPen(pen)
         for planet in self.planets:
             painter.drawPoint(
-                (planet.get_x()/self.scale+self.height()/2), 
-                (planet.get_y()/self.scale+self.width()/2))
+                (planet.get_x()/self.scale+self.width()/2), 
+                (planet.get_y()/self.scale+self.height()/2))
         painter.end()

@@ -20,5 +20,5 @@ class Planet:
     def get_y(self):
         return self.kleine_ha*math.sin(math.radians(self.winkel_fi))
 
-    def rotate_1_day(self):
-        self.winkel_fi += self.daily_rotation
+    def rotate(self, days):
+        self.winkel_fi += self.daily_rotation*days

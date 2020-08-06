@@ -17,7 +17,7 @@ class TestPlanet(unittest.TestCase):
     def test_rotate_1_day(self):
         planet = Planet('Jupiter',778412020, 777500023.9, 37669428.22, 0.04839266, 0, 2)
         self.assertEqual(planet.winkel_fi, 0)
-        planet.rotate_1_day()
+        planet.rotate(1)
         self.assertEqual(planet.winkel_fi, 2)
 
     def test_get_x(self):

@@ -5,17 +5,14 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class SpaceByte(QtWidgets.QWidget):
     def increment_day(self):
         for planet in self.solar_system.planets:
-            planet.rotate_1_day()
+            planet.rotate(1)
         self.solar_system.update()
 
     def startButtonEvent(self):
-        print ("Start Button clicked")
         self.timer.start(2)
 
     def stopButtonEvent(self):
-        print ("Stop Button clicked")
         self.timer.stop()
-        self.close()
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
