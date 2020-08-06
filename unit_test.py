@@ -1,4 +1,5 @@
 import unittest
+import math
 from Planet import Planet
 
 class TestPlanet(unittest.TestCase):
@@ -18,6 +19,19 @@ class TestPlanet(unittest.TestCase):
         self.assertEqual(planet.winkel_fi, 0)
         planet.rotate_1_day()
         self.assertEqual(planet.winkel_fi, 2)
+
+    def test_get_x(self):
+        planet = Planet('Jupiter',778412020, 777500023.9, 37669428.22, 0.04839266, 0, 2)
+        self.assertEqual(planet.get_x(), 778412020)
+        planet.winkel_fi = 90
+        self.assertEqual(round(planet.get_x()), 0)
+
+    def test_get_y(self):
+        planet = Planet('Jupiter',778412020, 777500023.9, 37669428.22, 0.04839266, 0, 2)
+        self.assertEqual(planet.get_y(), 0)
+        planet.winkel_fi = 90
+        self.assertEqual(round(planet.get_y()), 777500024)
+
 
 if __name__ == '__main__':
     unittest.main()

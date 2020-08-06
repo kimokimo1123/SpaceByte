@@ -14,11 +14,11 @@ class Planet:
     def radius_fi(self):
         return self.kleine_ha/math.sqrt(1-(self.numerische_ex**2)*(math.cos(self.winkel_fi)**2))
 
-    def x_coordin(self):
-        return self.grosse_ha*(math.cos(self.winkel_fi))
+    def get_x(self):
+        return self.grosse_ha*math.cos(math.radians(self.winkel_fi))
     
-    def y_coordin(self):
-        return self.kleine_ha*(math.sin(self.winkel_fi))
+    def get_y(self):
+        return self.kleine_ha*math.sin(math.radians(self.winkel_fi))
 
     def rotate_1_day(self):
         self.winkel_fi += self.daily_rotation
