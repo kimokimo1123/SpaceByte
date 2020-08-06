@@ -1,5 +1,3 @@
-import sys
-import math
 from Planet import Planet
 from SolarSystem import SolarSystem
 from PySide2 import QtCore, QtGui, QtWidgets
@@ -47,8 +45,3 @@ class SpaceByte(QtWidgets.QWidget):
         self.timer.timeout.connect(self.increment_day)
  
 
-app = QtWidgets.QApplication(sys.argv)
-spaceByte = SpaceByte()
-spaceByte.setGeometry(500, 500, 500, 500)
-spaceByte.show()
-sys.exit(app.exec_())
