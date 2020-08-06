@@ -27,8 +27,6 @@ class SolarSystem(QtWidgets.QWidget):
         pen.setBrush(QtCore.Qt.black)
         painter.setPen(pen)
         for planet in self.planets:
-            pen.setBrush(planet.get_color())
-            painter.setPen(pen)
             painter.drawPoint(
                 (planet.get_x()/self.scale+self.width()/2), 
                 (planet.get_y()/self.scale+self.height()/2))
