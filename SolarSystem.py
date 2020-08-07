@@ -8,7 +8,7 @@ class SolarSystem(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.setPalette(QtGui.QPalette(QtGui.QColor(100, 100, 100)))
-        self.setAutoFillBackground(False)
+        self.setAutoFillBackground(True)
         self.oImage = QtGui.QImage("background.jpg")
         sImage = self.oImage.scaled(QtCore.QSize(self.width(),self.height()))
         palette = QtGui.QPalette()
