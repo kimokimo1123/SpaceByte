@@ -3,7 +3,7 @@ from PySide2 import QtCore
 
 class Planet:
 
-    def __init__(self, name, grosse_ha, kleine_ha, lineare_ex, numerische_ex, winkel_fi, daily_rotation, color):
+    def __init__(self, name, grosse_ha, kleine_ha, lineare_ex, numerische_ex, winkel_fi, daily_rotation, color, diameter):
         self.name = name
         self.grosse_ha= grosse_ha
         self.kleine_ha= kleine_ha
@@ -12,6 +12,7 @@ class Planet:
         self.winkel_fi= winkel_fi
         self.daily_rotation = daily_rotation
         self.color = color
+        self.diameter = diameter
 
     def radius_fi(self):
         return self.kleine_ha/math.sqrt(1-(self.numerische_ex**2)*(math.cos(self.winkel_fi)**2))
