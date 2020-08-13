@@ -3,7 +3,7 @@ from Planet import Planet
 
 
 class SolarSystem(QtWidgets.QWidget):
-    scale = 7479894.5
+    scale = 10000000
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
@@ -36,6 +36,13 @@ class SolarSystem(QtWidgets.QWidget):
                 planet.get_y()/self.scale+self.height()/2,
                 planet.diameter,
                 planet.diameter)
+        brush.setColor(QtCore.Qt.yellow)   
+        painter.setBrush(brush)
+        painter.drawEllipse(
+            2499815/self.scale+self.width()/2, 
+            self.height()/2,
+            20,
+            20)     
         painter.end()
     
     def resizeEvent(self, newSize):

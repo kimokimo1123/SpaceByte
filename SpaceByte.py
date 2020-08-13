@@ -27,7 +27,7 @@ class SpaceByte(QtWidgets.QWidget):
         self.solar_system.update()
 
     def tick_slider_value_changed(self, newValue):
-        self.tick_size = newValue
+        self.tick_size = newValue/10
 
     def __init__(self, parent=None):
         max_slider_days = 5000
@@ -57,13 +57,13 @@ class SpaceByte(QtWidgets.QWidget):
         self.slider.valueChanged.connect(self.slider_value_changed)
         vLayout.addWidget(self.slider)
         self.scale_slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
-        self.scale_slider.setRange(2000000, 20000000)
+        self.scale_slider.setRange(500000, 20000000)
         self.scale_slider.setValue(7479894.5)
         self.scale_slider.valueChanged.connect(self.scale_slider_value_changed)
         vLayout.addWidget(self.scale_slider)
         self.tick_slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
-        self.tick_slider.setRange(0.001, 10)
-        self.tick_slider.setValue(1)
+        self.tick_slider.setRange(1, 200)
+        self.tick_slider.setValue(10)
         self.tick_slider.valueChanged.connect(self.tick_slider_value_changed)
         vLayout.addWidget(self.tick_slider)
         vLayout.addWidget(self.solar_system)
