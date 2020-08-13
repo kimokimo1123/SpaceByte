@@ -3,7 +3,7 @@ from SolarSystem import SolarSystem
 from PySide2 import QtCore, QtGui, QtWidgets
 
 class SpaceByte(QtWidgets.QWidget):
-    tick_size = 1
+    tick_size = 5
     def increment_day(self):
         for planet in self.solar_system.planets:
             planet.rotate(self.tick_size)
@@ -11,7 +11,7 @@ class SpaceByte(QtWidgets.QWidget):
         self.solar_system.update()
 
     def startButtonEvent(self):
-        self.timer.start(2)
+        self.timer.start(10)
 
     def stopButtonEvent(self):
         self.timer.stop()
